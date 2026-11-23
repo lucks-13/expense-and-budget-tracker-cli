@@ -42,4 +42,8 @@ def load_expenses(path : Path) -> list[Expense]:
         return []
     with path.open("r", encoding = "utf-8") as f:
         data = json.load(f)
-    return [Expense(amount = Decimal(item["amount"]), category = item["category"], spent_on = date.fromisoformat(item["spent_on"])), for item in data]
+    return [Expense(amount = Decimal(item["amount"]), category = item["category"], spent_on = date.fromisoformat(item["spent_on"]), note = item.get("note", "")) for item in data]
+
+def summarize_expenses(expenses : list[Expense]) -> dict:
+    
+

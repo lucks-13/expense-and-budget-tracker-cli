@@ -1,6 +1,6 @@
 import argparse
 from pathlib import Path
-from tracker import create_expense, load_expenses, save_expense, summarize_expenses
+from tracker import create_expense, load_expenses, save_expense, summarize_expenses, filter_expenses
 data_file = Path("expenses.json")
 
 def build_parser() -> argparse.ArgumentParser:
@@ -11,7 +11,8 @@ def build_parser() -> argparse.ArgumentParser:
     add_parser.add_argument("--category", required = True, help = "Expense category (Eg. : Food, Travel).")
     add_parser.add_argument("--date", default = None, help = "Date in DD - MM - YYYY format.")
     add_parser.add_argument("--note", default = "", help = "Optional short note.")
-    subparsers.add_parser("summary", help = "Show total and category spending")
+    summarysubparsers.add_parser("summary", help = "Show total and category spending")
+    
     return parser
 
 def main() -> None:

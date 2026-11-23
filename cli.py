@@ -22,5 +22,10 @@ def main() -> None:
         try:
             new_expense = create_expense(amount_raw = args.amount, category = args.category, date_raw = args.date, note = args.note)
         except ValueError as exc:
-            
+            print(f"Error : {exc}")
+            return
+        expenses.append(new_expense)
+        save_expense(expenses, data_file)
+        print(f"Saved : {new_expense.amount} under {new_expense.category} on {new_expense.spent_on.strftime('%d-%m-%Y')}")
+    elif args
 

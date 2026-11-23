@@ -9,7 +9,7 @@ stay tuned for more update.
 
 # Concept
 
-
+my idea for my upcoming project is a remainder app which remeinds me at particular where i set remainder lets say credit card bill payment on 25th of every month, my project has a keep note + calender + alarm app, it also has total revenue and total expense tra
 
 # How to Run it.
 
@@ -56,4 +56,5 @@ python cli.py summary --month 11-2026 --budget 5000
 * modelling data using @dataclass and handling money using Decimal instead of using float.
 * parsing and formatting dates
 
-# 
+# Ai Disclosure
+I used google gemini ai mode in chrome for learining and debugging the code.

@@ -52,4 +52,11 @@ def summarize_expenses(expenses : list[Expense]) -> dict:
         by_category[exp.category] = by_category.get(exp.category, Decimal("0")) + exp.amount
     return {"total" : total, "by_category" : by_category}
 
-def filter_expenses(expenses : list[Expense], category : str | None = None)
+def filter_expenses(expenses : list[Expense], category : str | None = None, month : str | None = None) -> list[Expense]:
+    result = expenses
+    if category is not None:
+        c_category = category.strip().lower()
+        if not c_category:
+            raise ValueError("Category filter cannot be empty.")
+        result = [exp for exp in result if exp.category.strip().lower() == c_category]
+        if month 

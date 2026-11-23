@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from decimal import Decimal, InvalidOperation
 
 @dataclass
@@ -24,7 +24,7 @@ def create_expense(amount_raw, category : str, date_raw : str | None = None, not
         spent_on = date.today()
     else:
         try:
-            spent_on = date.strftime(str(date_raw).strip(), "%d-%m-%y").date()
+            spent_on = datetime.strftime(str(date_raw).strip(), "%d-%m-%y").date()
         except (ValueError, TypeError) as exc:
             raise ValueError(f"Invalid date ( use DD - MM - YYYY ) : {date_raw!r}") from exc
     return Expense(amount = amount, category = c_category, spent_on = spent_on, note = c_note)

@@ -50,5 +50,4 @@ def summarize_expenses(expenses : list[Expense]) -> dict:
     for exp in expenses:
         total += exp.amount
         by_category[exp.category] = by_category.get(exp.category, Decimal("0")) + exp.amount
-    return 
-
+    return {"total" : total, "by_category" : by_category}

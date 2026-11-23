@@ -1,4 +1,5 @@
 import argparse
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from tracker import create_expense, load_expenses, save_expense, summarize_expenses, filter_expenses
 data_file = Path("expenses.json")
@@ -20,6 +21,11 @@ def build_parser() -> argparse.ArgumentParser:
     summary_parser.add_argument("--budget", default = None, help = "Budget limit to compare against spending (Eg. : 5000).")
     return parser
 
+def parse_budget(budget_raw : str | None) -> Decimal | None:
+    if budget_raw is None:
+        return None
+    try:
+        budget = Decimal(st)
 
 def main() -> None:
     parser = build_parser()

@@ -62,6 +62,7 @@ def main() -> None:
         expenses = load_expenses(data_file)
         try:
             filtered = filter_expenses(expenses, category = args.category, month = args.month)
+            budget = parse_budget(args.budget)
         except ValueError as exc:
             print(f"Error : {exc}")
             return
@@ -69,6 +70,8 @@ def main() -> None:
         print(f"Total spent : {summary['total']}")
         for category, amount in summary["by_category"].items():
             print(f" {category} : {amount}")
+        if budget is not None:
+            
 
 if __name__ == "__main__":
     main()

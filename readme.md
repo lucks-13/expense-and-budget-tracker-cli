@@ -11,7 +11,7 @@ stay tuned for more update.
 
 my idea for my upcoming project is a remainder app which remeinds me at particular where i set remainder lets say credit card bill payment on 25th of every month, my project has a keep note + calender + alarm app, it also has total revenue and total expense tracker + portfolio management which tells me how much percentage and on what like either in stocks or in bonds or in gold so basically its a end to end to manage remaind etc.
 
-the backend and the authentication will be handled by firebase or supabase.
+the backend and the authentication will be handled by firebase or supabase and 
 
 # How to Run it.
 

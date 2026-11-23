@@ -25,7 +25,9 @@ def parse_budget(budget_raw : str | None) -> Decimal | None:
     if budget_raw is None:
         return None
     try:
-        budget = Decimal(st)
+        budget = Decimal(str(budget_raw).strip())
+    except (InvalidOperation, ValueError, TypeError) as exc:
+        raise ValueError
 
 def main() -> None:
     parser = build_parser()

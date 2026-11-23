@@ -40,9 +40,13 @@ def save_expense(expenses : list[Expense], path : Path) -> None:
 def load_expenses(path : Path) -> list[Expense]:
     if not path.exists():
         return []
-    with path.open("r", encoding = "utf-8") as f:
-        data = json.load(f)
-    return [Expense(amount = Decimal(item["amount"]), category = item["category"], spent_on = date.fromisoformat(item["spent_on"]), note = item.get("note", "")) for item in data]
+    try:
+        with path.open("r", encoding = "utf-8") as f:
+            data = json.load(f)
+        if not isinstance(data, list):
+            raise ValueError("Expenses file must contain a list.")
+        return [Expense(amount = Decimal(item["amount"]), category = item["category"], spent_on = date.fromisoformat(item["spent_on"]), note = item.get("note", "")) for item in data]
+    except (OSError, json.JSONDecodeError, KeyError, TypeError)
 
 def summarize_expenses(expenses : list[Expense]) -> dict:
     total = Decimal("0")

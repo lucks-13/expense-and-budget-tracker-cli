@@ -11,8 +11,8 @@ def build_parser() -> argparse.ArgumentParser:
     add_parser.add_argument("--category", required = True, help = "Expense category (Eg. : Food, Travel).")
     add_parser.add_argument("--date", default = None, help = "Date in DD - MM - YYYY format.")
     add_parser.add_argument("--note", default = "", help = "Optional short note.")
-    summarysubparsers.add_parser("summary", help = "Show total and category spending")
-    
+    summary_parser = subparsers.add_parser("summary", help = "Show total and category spending")
+    summary_parser.add_argument("--category", default = None, help = "")
     return parser
 
 def main() -> None:

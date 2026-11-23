@@ -40,4 +40,6 @@ def save_expense(expenses : list[Expense], path : Path) -> None:
 def load_expenses(path : Path) -> list[Expense]:
     if not path.exists():
         return []
-    with 
+    with path.open("r", encoding = "utf-8") as f:
+        data = json.load(f)
+    return [Expense(amount = Decimal(item["amount"]), category = item["category"], spent_on = date.fromisoformat(item["spent_on"])), for item in data]

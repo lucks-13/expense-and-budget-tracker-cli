@@ -26,4 +26,5 @@ def create_expense(amount_raw, category : str, date_raw : str | None = None, not
         try:
             spent_on = date.strftime(str(date_raw).strip(), "%d-%m-%y").date()
         except (ValueError, TypeError) as exc:
-            raise ValueError(f"Invalid date ( use DD - MM - YYYY ) : {date_raw!r}")
+            raise ValueError(f"Invalid date ( use DD - MM - YYYY ) : {date_raw!r}") from exc
+    return Expense(amount = amount, category = c_category, spent_on = spent_on, note = c_note)

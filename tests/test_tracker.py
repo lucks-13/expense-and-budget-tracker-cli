@@ -22,4 +22,11 @@ class TestTracker(unittest.TestCase):
             create_expense("50", "Food", "32-02-2026")
 
     def test_save_load_summarize(self) -> None:
-        e1 = create_expense("100", )
+        e1 = create_expense("100", "Food", "23-11-2026")
+        e2 = create_expense("50", "Travel", "23-11-2026")
+        e3 = create_expense("25.50", "Food", "23-11-2026")
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            file_path = Path(tmp_dir) / "test_expenses.json"
+            save_expense([e1, e2, e3], file_path)
+            load_expenses = load_expenses(file_path)
+        summary = summarize_expenses(loaded)

@@ -28,5 +28,11 @@ class TestTracker(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             file_path = Path(tmp_dir) / "test_expenses.json"
             save_expense([e1, e2, e3], file_path)
-            load_expenses = load_expenses(file_path)
+            loaded = load_expenses(file_path)
         summary = summarize_expenses(loaded)
+        self.assertEqual(summary["total"], Decimal("175.50"))
+        self.assertEqual(summary["by_category"]["Food"], Decimal("125.50"))
+        self.assertEqual(summary["by_category"]["Travel"], Decimal("50"))
+
+if __name__ == "__main__":
+    unittest.main()

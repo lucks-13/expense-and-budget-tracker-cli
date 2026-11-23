@@ -59,4 +59,9 @@ def filter_expenses(expenses : list[Expense], category : str | None = None, mont
         if not c_category:
             raise ValueError("Category filter cannot be empty.")
         result = [exp for exp in result if exp.category.strip().lower() == c_category]
-        if month 
+        if month is not None:
+            c_month = month.strip()
+            try:
+                parsed_month = datetime.strptime(c_month, "%m-%Y")
+            except ValueError as exc:
+                raise ValueError (f"Invalid month (use MM-YYYY) : {month!}")

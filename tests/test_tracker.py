@@ -10,7 +10,7 @@ class TestTracker(unittest.TestCase):
         exp = create_expense("120.50", "Food", "23-11-2026", "Lunch")
         self.assertEqual(exp.amount, Decimal("120.50"))
         self.assertEqual(exp.category, "Food")
-        self.assertEqual(exp.spent_on, date(23, 11, 2026))
+        self.assertEqual(exp.spent_on, date(2026, 11, 23))
         self.assertEqual(exp.note, "Lunch")
 
     def test_reject_invalid_inputs(self) -> None:

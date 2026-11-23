@@ -16,3 +16,11 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     parser = build_parser()
+    args = parser.parse_args()
+    if args.command == "add":
+        expenses = load_expenses(data_file)
+        try:
+            new_expense = create_expense(amount_raw = args.amount, category = args.category, date_raw = args.date, note = args.note)
+        except ValueError as exc:
+            
+

@@ -51,3 +51,5 @@ def summarize_expenses(expenses : list[Expense]) -> dict:
         total += exp.amount
         by_category[exp.category] = by_category.get(exp.category, Decimal("0")) + exp.amount
     return {"total" : total, "by_category" : by_category}
+
+def filter_expenses(expenses : list[Expense], category : str | None = None)

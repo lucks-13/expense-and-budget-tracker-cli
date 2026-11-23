@@ -7,6 +7,10 @@ so its a single app to handle all the person finance,
 like portfolio management, emi alerts etc. like entire flow in one page to handle someones personal finance
 stay tuned for more update.
 
+# Concept
+
+
+
 # How to Run it.
 
 ```
@@ -40,4 +44,16 @@ filter by category
 python cli.py list --category Food
 ```
 
-3. View spending summary and budget stat
+3. View spending summary and budget status:
+
+```
+python cli.py summary --month 11-2026 --budget 5000
+```
+
+# what I learned.
+
+* fundamentals of finance
+* modelling data using @dataclass and handling money using Decimal instead of using float.
+* parsing and formatting dates
+
+# 

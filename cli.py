@@ -36,7 +36,7 @@ def main() -> None:
         except ValueError as exc:
             print(f"Error : {exc}")
             return
-        summary = summarize_expenses(expenses)
+        summary = summarize_expenses(filtered)
         print(f"Total spent : {summary['total']}")
         for category, amount in summary["by_category"].items():
             print(f" {category} : {amount}")

@@ -45,5 +45,10 @@ def load_expenses(path : Path) -> list[Expense]:
     return [Expense(amount = Decimal(item["amount"]), category = item["category"], spent_on = date.fromisoformat(item["spent_on"]), note = item.get("note", "")) for item in data]
 
 def summarize_expenses(expenses : list[Expense]) -> dict:
-    
+    total = Decimal("0")
+    by_category : dict[str, Decimal] = {}
+    for exp in expenses:
+        total += exp.amount
+        by_category[exp.category] = by_category.get(exp.category, Decimal("0")) + exp.amount
+    return 
 

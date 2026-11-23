@@ -13,7 +13,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_parser.add_argument("--note", default = "", help = "Optional short note.")
     summary_parser = subparsers.add_parser("summary", help = "Show total and category spending")
     summary_parser.add_argument("--category", default = None, help = "Filter by category (Eg. : Food, Travel).")
-    summary_parser.add_argument("--month", default=None, help = "Filter by month in MM - YYYY format ()")
+    summary_parser.add_argument("--month", default=None, help = "Filter by month in MM - YYYY (Eg. : 11-2026).")
     return parser
 
 def main() -> None:
@@ -31,6 +31,11 @@ def main() -> None:
         print(f"Saved : {new_expense.amount} under {new_expense.category} on {new_expense.spent_on.strftime('%d-%m-%Y')}")
     elif args.command == "summary":
         expenses = load_expenses(data_file)
+        try:
+            filtered = filter_expenses(expenses, category = args.category, month = args.month)
+        except ValueError as exc:
+            print(f"Error : {exc}")
+            return
         summary = summarize_expenses(expenses)
         print(f"Total spent : {summary['total']}")
         for category, amount in summary["by_category"].items():

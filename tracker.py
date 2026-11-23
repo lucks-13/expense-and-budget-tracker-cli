@@ -33,9 +33,11 @@ def create_expense(amount_raw, category : str, date_raw : str | None = None, not
 
 def save_expense(expenses : list[Expense], path : Path) -> None:
     path.parent.mkdir(parents = True, exist_ok = True)
-    data = [{
-            "amount" : str(exp.amount),
-            "category" : exp.category,
+    data = [{ "amount" : str(exp.amount), "category" : exp.category,"spent_on" : exp.spent_on.isoformat(), "note" : exp.note} for exp in expenses]
+    with path.open("w", encoding = "utf-8") as f:
+        json.dump(data, f, indent = 2)
 
-        } for exp in expenses
-    ]
+def load_expenses(path : Path) -> list[Expense]:
+    if not path.exists():
+        return []
+    with 

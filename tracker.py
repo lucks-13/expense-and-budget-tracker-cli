@@ -46,8 +46,9 @@ def load_expenses(path : Path) -> list[Expense]:
         if not isinstance(data, list):
             raise ValueError("Expenses file must contain a list.")
         return [Expense(amount = Decimal(item["amount"]), category = item["category"], spent_on = date.fromisoformat(item["spent_on"]), note = item.get("note", "")) for item in data]
-    except (OSError, json.JSONDecodeError, KeyError, TypeError)
-
+    except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError, InvalidOperation) as exc:
+        raise ValueError(f"Could not load expenses from {path} : {exc}") from exc
+    
 def summarize_expenses(expenses : list[Expense]) -> dict:
     total = Decimal("0")
     by_category : dict[str, Decimal] = {}

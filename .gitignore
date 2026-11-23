@@ -5,4 +5,9 @@
 /.auto_git_push.log
 /setup-auto-git-push.ps1
 
+__pycache__/
+*.py[cod]
 .venv/
+build/
+dist/
+*.spec

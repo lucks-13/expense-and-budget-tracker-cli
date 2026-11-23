@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 from dataclasses import dataclass
 from datetime import date, datetime
 from decimal import Decimal, InvalidOperation
@@ -19,12 +21,14 @@ def create_expense(amount_raw, category : str, date_raw : str | None = None, not
     except (InvalidOperation, ValueError, TypeError) as exc:
         raise ValueError(f"Invalid amount : {amount_raw!r}") from exc
     if amount <= 0:
-        raise ValueError("Amount must be grater than zero.")
+        raise ValueError("Amount must be greater than zero.")
     if date_raw is None:
         spent_on = date.today()
     else:
         try:
-            spent_on = datetime.strftime(str(date_raw).strip(), "%d-%m-%y").date()
+            spent_on = datetime.strptime(str(date_raw).strip(), "%d-%m-%Y").date()
         except (ValueError, TypeError) as exc:
-            raise ValueError(f"Invalid date ( use DD - MM - YYYY ) : {date_raw!r}") from exc
+            raise ValueError(f"Invalid date (use DD-MM-YYYY): {date_raw!r}") from exc
     return Expense(amount = amount, category = c_category, spent_on = spent_on, note = c_note)
+
+def save_expense

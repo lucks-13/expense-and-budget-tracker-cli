@@ -1,6 +1,6 @@
 import argparse
 from pathlib import Path
-from src.tracker import create_expense, load_expenses, save_expense, summarize_expenses
+from tracker import create_expense, load_expenses, save_expense, summarize_expenses
 data_file = Path("expenses.json")
 
 def build_parser() -> argparse.ArgumentParser:

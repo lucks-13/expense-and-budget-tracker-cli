@@ -27,5 +27,13 @@ def main() -> None:
         expenses.append(new_expense)
         save_expense(expenses, data_file)
         print(f"Saved : {new_expense.amount} under {new_expense.category} on {new_expense.spent_on.strftime('%d-%m-%Y')}")
-    elif args
+    elif args.command == "summary":
+        expenses = load_expenses(data_file)
+        summary = summarize_expenses(expenses)
+        print(f"Total spent : {summary['total']}")
+        for category, amount in summary["by_category"].items():
+            print(f" {category} : {amount}")
+
+if __name__ == "__main__":
+    main()
 

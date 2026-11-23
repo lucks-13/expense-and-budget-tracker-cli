@@ -21,4 +21,4 @@ class TestTracker(unittest.TestCase):
         with self.assertRaises(ValueError):
             create_expense("50", "Food", "32-02-2026")
 
-    
+    def test

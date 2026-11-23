@@ -33,6 +33,18 @@ def main() -> None:
         save_expense(expenses, data_file)
         print(f"Saved : {new_expense.amount} under {new_expense.category} on {new_expense.spent_on.strftime('%d-%m-%Y')}")
     elif args.command == "list":
+        expenses = load_expenses(data_file)
+        try:
+            filtered = filter_expenses(expenses, category = args.category, month = args.month)
+        except ValueError as exc:
+            print(f"Error : {exc}")
+            return
+        if not filtered:
+            print("No expenses found.")
+            return 
+        for exp in filtered:
+            note_part = f" - {exp.note}" if exp.note else ""
+            print(f"{exp}")
     elif args.command == "summary":
         expenses = load_expenses(data_file)
         try:

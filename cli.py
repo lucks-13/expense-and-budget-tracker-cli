@@ -67,11 +67,14 @@ def main() -> None:
             print(f"Error : {exc}")
             return
         summary = summarize_expenses(filtered)
+        total = summary["total"]
         print(f"Total spent : {summary['total']}")
         for category, amount in summary["by_category"].items():
             print(f" {category} : {amount}")
         if budget is not None:
-            
+            print(f"Budget : {budget}")
+            if total <= budget:
+                print(f"Remaining : {budget - total}")
 
 if __name__ == "__main__":
     main()
